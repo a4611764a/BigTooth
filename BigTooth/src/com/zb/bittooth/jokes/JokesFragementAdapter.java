@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.zb.bittooth.App;
 import com.zb.bittooth.R;
 import com.zb.bittooth.customView.CircleImageView;
 import com.zb.bittooth.customView.MyWind8ImageView;
@@ -27,12 +28,6 @@ public class JokesFragementAdapter extends BaseAdapter {
 	private List<Jokes> mList;
 	private Context mContext;
 	private boolean canLoadImage = true;
-	// 显示图片的配置
-	DisplayImageOptions options = new DisplayImageOptions.Builder()
-			.showImageOnLoading(com.zb.bittooth.R.drawable.default_img)
-			.showImageOnFail(com.zb.bittooth.R.drawable.default_img)
-			.cacheInMemory(true).cacheOnDisk(true)
-			.bitmapConfig(Bitmap.Config.RGB_565).build();
 
 	public JokesFragementAdapter(Context context, List<Jokes> list) {
 		this.mContext = context;
@@ -77,7 +72,7 @@ public class JokesFragementAdapter extends BaseAdapter {
 		holder.tag1.setText(mList.get(position).getTag());
 		if (canLoadImage) {
 			ImageLoader.getInstance().displayImage(
-					mList.get(position).getImgHead(), holder.img_head, options);
+					mList.get(position).getImgHead(), holder.img_head, App.options);
 		}
 		holder.shoucangl.setOnClickListener(new OnClickListener() {
 			@Override

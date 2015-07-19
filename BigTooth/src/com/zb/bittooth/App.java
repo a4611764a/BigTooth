@@ -2,6 +2,7 @@ package com.zb.bittooth;
 
 import java.io.File;
 import android.app.Application;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 public class App extends Application {
 	public static App app;
 	public static Typeface TEXT_TYPE;
+	public static DisplayImageOptions options;
 	@Override
 	public void onCreate() {
 		File cacheDir = StorageUtils.getOwnCacheDirectory(
@@ -60,6 +62,14 @@ public class App extends Application {
 				.build();// 开始构建
 		// Initialize ImageLoader with configuration.
 		ImageLoader.getInstance().init(config);// 全局初始化此配置
+		// 显示图片的配置
+		 options = new DisplayImageOptions.Builder()
+				.showImageOnLoading(com.zb.bittooth.R.drawable.default_img)
+				.showImageOnFail(com.zb.bittooth.R.drawable.default_img)
+				.cacheInMemory(true).cacheOnDisk(true)
+				.bitmapConfig(Bitmap.Config.RGB_565).build();
+		
+		
 		// 初始化美洽SDK
 		MCClient.init(this, "557fb69c4eae356204000008", new OnInitCallback() {
 
@@ -90,4 +100,5 @@ public class App extends Application {
 					TEXT_TYPE = null;
 				}
 	}
+	
 }
