@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app1="http://schemas.android.com/apk/res/com.zb.bittooth"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_all" >
+
+    <com.zb.bittooth.customView.RoundedImageView
+        android:id="@+id/img_head"
+        android:layout_width="@dimen/x75"
+        android:layout_height="@dimen/y75"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="@dimen/x10"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_img"
+        app1:riv_corner_radius="9dip" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="45dp"
+        android:paddingTop="@dimen/y5"
+        android:layout_alignTop="@id/img_head"
+        android:layout_toRightOf="@id/img_head"
+        android:ellipsize="end"
+        android:maxEms="10"
+        android:singleLine="true"
+        android:text="大牙为您精心推荐" />
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_margin="@dimen/y20"
+        android:layout_toLeftOf="@+id/distance"
+        android:layout_alignBaseline="@id/img_head"
+        android:gravity="right"
+        android:text="发表(10)"
+        android:paddingBottom="@dimen/y5"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/name"
+        android:layout_margin="@dimen/y20"
+        android:gravity="right"
+           android:layout_alignBaseline="@id/img_head"
+        android:text="100m"
+          android:paddingBottom="@dimen/y5"
+        android:textSize="15sp" />
+
+</RelativeLayout>

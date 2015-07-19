@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_all" >
+
+    <com.zb.bittooth.customView.JokesxuehuaView
+        android:id="@+id/flowerview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </com.zb.bittooth.customView.JokesxuehuaView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#00555555"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y55"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/mogu_main"
+                android:padding="@dimen/x12"
+                android:text="北京"
+                android:textColor="@color/deep_orange"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:padding="@dimen/x12"
+                android:text="笑料"
+                android:textColor="@color/deep_orange"
+                android:textSize="16sp" />
+
+            <com.zb.bittooth.customView.MyFrontTextView
+                android:id="@+id/jokes_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/x12"
+                android:text="笑图"
+               />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_netState"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <fragment
+                android:id="@+id/fra_netState"
+                android:name="com.zb.bittooth.fragement.SettingNet"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <com.zb.bittooth.customView.PullToRefreshView
+            android:id="@+id/pull"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <com.zb.bittooth.customView.AutoListView
+                android:id="@+id/listView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </com.zb.bittooth.customView.PullToRefreshView>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/goto_top"
+        android:layout_width="@dimen/x100"
+        android:layout_height="@dimen/y50"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="@dimen/y80"
+        android:src="@drawable/jokes_goto_top" 
+        android:visibility="gone"
+        />
+</FrameLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:dafruits="http://schemas.android.com/apk/res/com.zb.bittooth"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <com.zb.bittooth.customView.ExtendedListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:choiceMode="singleChoice"
+        dafruits:scrollBarPanel="@layout/mine_frame_dirp_scrollbarpanel"
+        dafruits:scrollBarPanelInAnimation="@anim/in"
+        dafruits:scrollBarPanelOutAnimation="@anim/out" />
+</LinearLayout>

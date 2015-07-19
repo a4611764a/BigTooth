@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_all"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y55"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/y10"
+            android:paddingLeft="@dimen/x80"
+            android:paddingRight="@dimen/x80"
+            android:paddingTop="@dimen/y10" >
+
+            <Button
+                android:id="@+id/btn_near"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mine_title_bg_y_l"
+                android:text="附近的人"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btn_dirp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/mine_title_bg_n_r"
+                android:text="我的点滴"
+                android:textColor="@color/deep_orange"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:padding="@dimen/x10"
+            android:id="@+id/service"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x10"
+            android:layout_width="@dimen/x50"
+            android:layout_height="@dimen/y50"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/mine_service" />
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_Mine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </android.support.v4.view.ViewPager>
+
+</LinearLayout>

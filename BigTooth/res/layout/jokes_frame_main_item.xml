@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <com.zb.bittooth.customView.CircleImageView
+        android:layout_margin="10dp"
+        android:id="@+id/img_head"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:src="@drawable/default_img"
+        android:cropToPadding="true" />
+    <TextView
+        android:id="@+id/name"
+        android:layout_alignTop="@id/img_head"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@id/img_head"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:maxEms="10"
+        android:text="大牙为您精心推荐" />
+    <TextView
+        android:id="@+id/content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@id/img_head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:text="我爱北京天安门，天安门上太阳升我爱北京天安门，天安门上太阳升我爱北京天安门，我爱北京天安门，天安门上太阳升,天安门上太阳升我爱北京天安门，天安门上太阳升我爱北京天安门，天安门上太阳升我爱北京天安门，天安门上太阳升我爱北京天安门，天安门上太阳升我爱北京天安门，天安门上太阳升"
+        />
+<TextView
+    android:id="@+id/tag1"
+    android:layout_alignParentRight="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="标签1"
+    android:paddingRight="40dp"
+    android:layout_margin="10dp"
+    />
+<!-- <TextView
+    android:id="@+id/tag2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_toLeftOf="@id/tag1"
+    android:layout_margin="10dp"
+    android:text="标签2" /> -->
+</RelativeLayout>
