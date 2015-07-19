@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,9 +22,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,9 +73,12 @@ public class ToothFragment extends Fragment {
 	RequestParams params = null;
 	private List<Tag> listTag;
 	private static boolean isPostHead = false;
-	static String filePath = "";//图片地址
+	static String filePath = "";// 上传图片路径地址
 	private int position = -1;
 	private int old_position = -1;
+	/**
+	 * 自定义流式布局
+	 */
 	private FlowLayout mFlowlayout;
 
 	@Override
@@ -88,7 +87,7 @@ public class ToothFragment extends Fragment {
 		View view = LayoutInflater.from(getActivity()).inflate(
 				R.layout.tooth_frame_main, null);
 		context = getActivity();
-		ViewUtils.inject(this, view); 
+		ViewUtils.inject(this, view); // 注入view和事件
 		EventBus.getDefault().register(this);
 		httpUtils = new HttpUtils();
 		gson = new Gson();
@@ -99,6 +98,7 @@ public class ToothFragment extends Fragment {
 		getTags();
 		imageView1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				// 使用startActivityForResult启动SelectPicPopupWindow当返回到此Activity的时候就会调用onActivityResult函数
 				startActivityForResult(new Intent(context,
 						SelectPicPopupWindow.class), 1);
 			}
@@ -182,10 +182,13 @@ public class ToothFragment extends Fragment {
 		switch (resultCode) {
 		case 1:
 			if (data != null) {
+				// 取得返回的Uri,基本上选择照片的时候返回的是以Uri形式，但是在拍照中有得机子呢Uri是空的，所以要特别注意
 				Uri mImageCaptureUri = data.getData();
+				// 返回的Uri不为空时，那么图片信息数据都会在Uri中获得。如果为空，那么我们就进行下面的方式获取
 				if (mImageCaptureUri != null) {
 					Bitmap image;
 					try {
+						// 这个方法是根据Uri获取Bitmap图片的静态方法
 						image = MediaStore.Images.Media.getBitmap(
 								context.getContentResolver(), mImageCaptureUri);
 						if (image != null) {
@@ -199,6 +202,7 @@ public class ToothFragment extends Fragment {
 				} else {
 					Bundle extras = data.getExtras();
 					if (extras != null) {
+						// 这里是有些拍照后的图片是直接存放到Bundle中的所以我们可以从这里面获取Bitmap图片
 						Bitmap image = extras.getParcelable("data");
 						if (image != null) {
 							File file = savePicToSdcard(image,
@@ -220,6 +224,7 @@ public class ToothFragment extends Fragment {
 		}
 	}
 
+	// 头像图片路径
 	public static File savePicToSdcard(Bitmap bitmap, String path,
 			String fileName) {
 		File destFile = null;
@@ -245,9 +250,9 @@ public class ToothFragment extends Fragment {
 	@OnClick(R.id.regist)
 	public void regist(final Button v) {
 		if (name.getText().toString().trim().length() <= 0) {
-			T.showShort(context, "请输入您喜欢的称呼");
+			T.showShort(context, "请输入您喜欢的昵称");
 		} else if (!isPostHead) {
-			T.showShort(context, "请点击上传喜欢的头像");
+			T.showShort(context, "请上传您要使用的头像");
 		} else {
 			params = new RequestParams();
 			params.addQueryStringParameter("uuid",
@@ -302,9 +307,9 @@ public class ToothFragment extends Fragment {
 	@OnClick(R.id.post)
 	public void postJokes(View v) {
 		if (jokes.getText().toString().trim().length() <= 0) {
-			T.showShort(context, "请输入你想说的话");
+			T.showShort(context, "请输入您笑话的内容");
 		} else if (old_position != -1) {
-			T.showShort(context, "请选择一个标签");
+			T.showShort(context, "请为您的笑话点击一个标签");
 		} else {
 			params = new RequestParams();
 			params.addQueryStringParameter("uuid",
@@ -343,7 +348,7 @@ public class ToothFragment extends Fragment {
 
 	@OnClick(R.id.ll_mo)
 	public void ll_mo(View v) {
-		T.showShort(context, "���ȼ���󣬲��ܷ���Ц��");
+		T.showShort(context, "请先加入后，才能发表笑话");
 	}
 
 	@Override
