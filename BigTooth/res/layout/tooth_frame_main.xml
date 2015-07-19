@@ -26,8 +26,8 @@
 
         <com.zb.bittooth.customView.RoundedImageView
             android:id="@+id/imageView1"
-            android:layout_width="@dimen/x105"
-            android:layout_height="@dimen/y105"
+            android:layout_width="@dimen/x85"
+            android:layout_height="@dimen/x85"
             android:layout_below="@id/title"
             android:layout_margin="@dimen/x20"
             android:scaleType="centerCrop"
@@ -56,6 +56,7 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:layout_alignLeft="@id/name"
+                android:layout_marginRight="@dimen/x5"
                 android:layout_alignBottom="@+id/imageView1"
                 android:textSize="13sp" />
         <Button
