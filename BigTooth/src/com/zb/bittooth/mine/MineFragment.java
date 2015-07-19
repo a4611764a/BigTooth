@@ -61,7 +61,7 @@ public class MineFragment extends Fragment {
 							R.color.deep_orange));
 					break;
 				case 1:
-					btn_near.setBackgroundResource(R.drawable.mine_title_bg_n_l);
+					btn_near.setBackgroundResource(R.drawable.mine_title_bg_n_r);
 					btn_near.setTextColor(getResources().getColor(
 							R.color.deep_orange));
 					btn_dirp.setBackgroundResource(R.drawable.mine_title_bg_y_r);
