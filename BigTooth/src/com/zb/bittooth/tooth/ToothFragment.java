@@ -77,12 +77,9 @@ public class ToothFragment extends Fragment {
 	RequestParams params = null;
 	private List<Tag> listTag;
 	private static boolean isPostHead = false;
-	static String filePath = "";// ÉÏ´«Í¼Æ¬Â·¾¶µØÖ·
+	static String filePath = "";//å›¾ç‰‡åœ°å€
 	private int position = -1;
 	private int old_position = -1;
-	/**
-	 * ×Ô¶¨ÒåÁ÷Ê½²¼¾Ö
-	 */
 	private FlowLayout mFlowlayout;
 
 	@Override
@@ -91,7 +88,7 @@ public class ToothFragment extends Fragment {
 		View view = LayoutInflater.from(getActivity()).inflate(
 				R.layout.tooth_frame_main, null);
 		context = getActivity();
-		ViewUtils.inject(this, view); // ×¢ÈëviewºÍÊÂ¼ş
+		ViewUtils.inject(this, view); 
 		EventBus.getDefault().register(this);
 		httpUtils = new HttpUtils();
 		gson = new Gson();
@@ -102,7 +99,6 @@ public class ToothFragment extends Fragment {
 		getTags();
 		imageView1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// Ê¹ÓÃstartActivityForResultÆô¶¯SelectPicPopupWindowµ±·µ»Øµ½´ËActivityµÄÊ±ºò¾Í»áµ÷ÓÃonActivityResultº¯Êı
 				startActivityForResult(new Intent(context,
 						SelectPicPopupWindow.class), 1);
 			}
@@ -186,13 +182,10 @@ public class ToothFragment extends Fragment {
 		switch (resultCode) {
 		case 1:
 			if (data != null) {
-				// È¡µÃ·µ»ØµÄUri,»ù±¾ÉÏÑ¡ÔñÕÕÆ¬µÄÊ±ºò·µ»ØµÄÊÇÒÔUriĞÎÊ½£¬µ«ÊÇÔÚÅÄÕÕÖĞÓĞµÃ»ú×ÓÄØUriÊÇ¿ÕµÄ£¬ËùÒÔÒªÌØ±ğ×¢Òâ
 				Uri mImageCaptureUri = data.getData();
-				// ·µ»ØµÄUri²»Îª¿ÕÊ±£¬ÄÇÃ´Í¼Æ¬ĞÅÏ¢Êı¾İ¶¼»áÔÚUriÖĞ»ñµÃ¡£Èç¹ûÎª¿Õ£¬ÄÇÃ´ÎÒÃÇ¾Í½øĞĞÏÂÃæµÄ·½Ê½»ñÈ¡
 				if (mImageCaptureUri != null) {
 					Bitmap image;
 					try {
-						// Õâ¸ö·½·¨ÊÇ¸ù¾İUri»ñÈ¡BitmapÍ¼Æ¬µÄ¾²Ì¬·½·¨
 						image = MediaStore.Images.Media.getBitmap(
 								context.getContentResolver(), mImageCaptureUri);
 						if (image != null) {
@@ -206,7 +199,6 @@ public class ToothFragment extends Fragment {
 				} else {
 					Bundle extras = data.getExtras();
 					if (extras != null) {
-						// ÕâÀïÊÇÓĞĞ©ÅÄÕÕºóµÄÍ¼Æ¬ÊÇÖ±½Ó´æ·Åµ½BundleÖĞµÄËùÒÔÎÒÃÇ¿ÉÒÔ´ÓÕâÀïÃæ»ñÈ¡BitmapÍ¼Æ¬
 						Bitmap image = extras.getParcelable("data");
 						if (image != null) {
 							File file = savePicToSdcard(image,
@@ -228,7 +220,6 @@ public class ToothFragment extends Fragment {
 		}
 	}
 
-	// Í·ÏñÍ¼Æ¬Â·¾¶
 	public static File savePicToSdcard(Bitmap bitmap, String path,
 			String fileName) {
 		File destFile = null;
@@ -254,9 +245,9 @@ public class ToothFragment extends Fragment {
 	@OnClick(R.id.regist)
 	public void regist(final Button v) {
 		if (name.getText().toString().trim().length() <= 0) {
-			T.showShort(context, "ÇëÊäÈëÄúÏ²»¶µÄêÇ³Æ");
+			T.showShort(context, "è¯·è¾“å…¥æ‚¨å–œæ¬¢çš„ç§°å‘¼");
 		} else if (!isPostHead) {
-			T.showShort(context, "ÇëÉÏ´«ÄúÒªÊ¹ÓÃµÄÍ·Ïñ");
+			T.showShort(context, "è¯·ç‚¹å‡»ä¸Šä¼ å–œæ¬¢çš„å¤´åƒ");
 		} else {
 			params = new RequestParams();
 			params.addQueryStringParameter("uuid",
@@ -311,9 +302,9 @@ public class ToothFragment extends Fragment {
 	@OnClick(R.id.post)
 	public void postJokes(View v) {
 		if (jokes.getText().toString().trim().length() <= 0) {
-			T.showShort(context, "ÇëÊäÈëÄúĞ¦»°µÄÄÚÈİ");
+			T.showShort(context, "è¯·è¾“å…¥ä½ æƒ³è¯´çš„è¯");
 		} else if (old_position != -1) {
-			T.showShort(context, "ÇëÎªÄúµÄĞ¦»°µã»÷Ò»¸ö±êÇ©");
+			T.showShort(context, "è¯·é€‰æ‹©ä¸€ä¸ªæ ‡ç­¾");
 		} else {
 			params = new RequestParams();
 			params.addQueryStringParameter("uuid",
@@ -352,7 +343,7 @@ public class ToothFragment extends Fragment {
 
 	@OnClick(R.id.ll_mo)
 	public void ll_mo(View v) {
-		T.showShort(context, "ÇëÏÈ¼ÓÈëºó£¬²ÅÄÜ·¢±íĞ¦»°");
+		T.showShort(context, "ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½ó£¬²ï¿½ï¿½Ü·ï¿½ï¿½ï¿½Ğ¦ï¿½ï¿½");
 	}
 
 	@Override
