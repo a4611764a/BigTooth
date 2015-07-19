@@ -9,6 +9,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
@@ -17,7 +18,9 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zb.bittooth.R;
 import com.zb.bittooth.customView.CircleImageView;
+import com.zb.bittooth.customView.MyWind8ImageView;
 import com.zb.bittooth.model.Jokes;
+import com.zb.bittooth.utils.T;
 
 public class JokesFragementAdapter extends BaseAdapter {
 
@@ -63,6 +66,7 @@ public class JokesFragementAdapter extends BaseAdapter {
 			holder.name = (TextView) convertView.findViewById(R.id.name);
 			holder.content = (TextView) convertView.findViewById(R.id.content);
 			holder.tag1 = (TextView) convertView.findViewById(R.id.tag1);
+			holder.shoucangl=(MyWind8ImageView) convertView.findViewById(R.id.shoucang);
 			// holder.tag2 = (TextView) convertView.findViewById(R.id.tag2);
 			convertView.setTag(holder);
 		} else {
@@ -75,11 +79,18 @@ public class JokesFragementAdapter extends BaseAdapter {
 			ImageLoader.getInstance().displayImage(
 					mList.get(position).getImgHead(), holder.img_head, options);
 		}
+		holder.shoucangl.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				T.showShort(mContext, "dd");
+			}
+		});
 		return convertView;
 	}
 
 	static class ViewHolder {
 		public CircleImageView img_head;
 		public TextView name, content, tag1;
+		public MyWind8ImageView shoucangl;
 	}
 }
