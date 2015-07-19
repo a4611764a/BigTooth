@@ -45,7 +45,6 @@ import com.zb.bittooth.customView.RoundedImageView;
 import com.zb.bittooth.model.Moble;
 import com.zb.bittooth.model.Tag;
 import com.zb.bittooth.utils.MobelUtils;
-import com.zb.bittooth.utils.SPUtils;
 import com.zb.bittooth.utils.T;
 
 import de.greenrobot.event.EventBus;
