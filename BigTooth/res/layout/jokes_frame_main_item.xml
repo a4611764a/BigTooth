@@ -55,7 +55,7 @@
     android:layout_alignParentRight="true"
     android:layout_width="@dimen/x40"
     android:layout_height="@dimen/x20"
-    android:src="@drawable/star"
+    android:src="@drawable/default_img"
     android:layout_margin="10dp"
     />
 </RelativeLayout>
