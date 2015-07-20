@@ -56,6 +56,6 @@
     android:layout_width="@dimen/x40"
     android:layout_height="@dimen/x20"
     android:src="@drawable/default_img"
-    android:layout_margin="10dp"
+    android:layout_margin="@dimen/x10"
     />
 </RelativeLayout>
