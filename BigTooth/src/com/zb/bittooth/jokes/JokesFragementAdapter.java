@@ -72,7 +72,7 @@ public class JokesFragementAdapter extends BaseAdapter {
 		holder.tag1.setText(mList.get(position).getTag());
 		if (canLoadImage) {
 			ImageLoader.getInstance().displayImage(
-					mList.get(position).getImgHead(), holder.img_head, App.options);
+					mList.get(position).getImgHead(), holder.img_head, App.options,App.mImageLoadingListenerImpl);
 		}
 		holder.shoucangl.setOnClickListener(new OnClickListener() {
 			@Override

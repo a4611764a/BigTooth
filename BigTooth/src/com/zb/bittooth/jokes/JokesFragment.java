@@ -37,6 +37,8 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import com.umeng.analytics.MobclickAgent;
 import com.zb.bittooth.MyEvent;
 import com.zb.bittooth.NetReceiver;
@@ -152,6 +154,9 @@ public class JokesFragment extends Fragment implements OnLoadListener {
 		listView.setOnLoadListener(this);
 		adapter = new JokesFragementAdapter(context, list_show);
 		listView.setAdapter(adapter);
+	//	listView.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, false));
+    //    gridView.setOnScrollListener(new PauseOnScrollListener(imageLoader, pauseOnScroll, pauseOnFling));
+
 		return view;
 	}
 
@@ -160,6 +165,7 @@ public class JokesFragment extends Fragment implements OnLoadListener {
 				+ "?page=" + page, new RequestCallBack<String>() {
 			@Override
 			public void onStart() {
+				if(page==1)
 				dialog.show();
 			}
 

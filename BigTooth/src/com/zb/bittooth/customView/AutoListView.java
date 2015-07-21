@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.PauseOnScrollListener;
 import com.zb.bittooth.MyEvent;
 import com.zb.bittooth.R;
 import com.zb.bittooth.utils.ScreenUtils;
@@ -146,12 +148,23 @@ public class AutoListView extends ListView implements OnScrollListener {
 		else{
 			myEvent.setIsShow("0");
 		}
+		
 		EventBus.getDefault().post(myEvent);
 	}
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
 		this.scrollState = scrollState;
 		ifNeedLoad(view, scrollState);
+		switch (scrollState) {		
+	case OnScrollListener.SCROLL_STATE_IDLE:
+		ImageLoader.getInstance().resume();
+		break;
+	case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+		ImageLoader.getInstance().pause();
+		break;
+	case OnScrollListener.SCROLL_STATE_FLING:
+			ImageLoader.getInstance().pause();
+		}
 	}
 
 	// 根据listview滑动的状态判断是否需要加载更多

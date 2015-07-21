@@ -1,10 +1,16 @@
 package com.zb.bittooth;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 import android.app.Application;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.mechat.mechatlibrary.MCClient;
@@ -16,13 +22,16 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 public class App extends Application {
 	public static App app;
 	public static Typeface TEXT_TYPE;
 	public static DisplayImageOptions options;
+	public static ImageLoadingListenerImpl mImageLoadingListenerImpl;
 	@Override
 	public void onCreate() {
 		File cacheDir = StorageUtils.getOwnCacheDirectory(
@@ -67,8 +76,9 @@ public class App extends Application {
 				.showImageOnLoading(com.zb.bittooth.R.drawable.default_img)
 				.showImageOnFail(com.zb.bittooth.R.drawable.default_img)
 				.cacheInMemory(true).cacheOnDisk(true)
-				.bitmapConfig(Bitmap.Config.RGB_565).build();
-		
+				.bitmapConfig(Bitmap.Config.RGB_565).build()
+				;
+		 mImageLoadingListenerImpl=new ImageLoadingListenerImpl();
 		
 		// 初始化美洽SDK
 		MCClient.init(this, "557fb69c4eae356204000008", new OnInitCallback() {
@@ -102,3 +112,22 @@ public class App extends Application {
 	}
 	
 }
+//监听图片异步加载,图片淡入效果
+ class ImageLoadingListenerImpl extends SimpleImageLoadingListener {
+
+  public static final List<String> displayedImages = 
+        Collections.synchronizedList(new LinkedList<String>());
+
+  @Override
+  public void onLoadingComplete(String imageUri, View view,Bitmap bitmap) {
+    if (bitmap != null) {
+      ImageView imageView = (ImageView) view;
+      boolean isFirstDisplay = !displayedImages.contains(imageUri);
+   //   if (isFirstDisplay) {
+        //图片的淡入效果
+        FadeInBitmapDisplayer.animate(imageView, 2000);
+        displayedImages.add(imageUri);
+  //    }
+    }
+  }
+  }
