@@ -18,12 +18,22 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/x20"
             android:layout_marginLeft="@dimen/x10"
-            android:text="您的信息"
+            android:text="我的信息"
             android:textColor="@color/deep_orange"
             android:textSize="15sp" />
-
+           <ImageView
+            android:id="@+id/level"
+            android:layout_width="@dimen/x30"
+            android:layout_height="@dimen/x20"
+            android:layout_marginRight="@dimen/x10"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_img"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/title"
+            android:visibility="gone"
+             />
         <com.zb.bittooth.customView.RoundedImageView
             android:id="@+id/imageView1"
             android:layout_width="@dimen/x85"

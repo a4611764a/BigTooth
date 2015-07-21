@@ -48,7 +48,6 @@ import com.zb.bittooth.customView.CustomProgressDialog;
 import com.zb.bittooth.customView.JokesxuehuaView;
 import com.zb.bittooth.customView.PullToRefreshView;
 import com.zb.bittooth.customView.PullToRefreshView.PullToRefreshListener;
-import com.zb.bittooth.mine.NearFragementAdapter;
 import com.zb.bittooth.model.Jokes;
 import com.zb.bittooth.model.Moble;
 import com.zb.bittooth.utils.MobelUtils;
@@ -94,7 +93,6 @@ public class JokesFragment extends Fragment implements OnLoadListener {
 			mFlowerView.inva();
 		};
 	};
-
 	//
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -209,6 +207,12 @@ public class JokesFragment extends Fragment implements OnLoadListener {
 	@Override
 	public void onStart() {
 		super.onStart();
+	}
+
+	@Override
+	public void onDestroyView() {
+		// TODO 自动生成的方法存根
+		super.onDestroyView();
 	}
 
 	@Override

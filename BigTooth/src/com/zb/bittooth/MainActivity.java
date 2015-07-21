@@ -41,7 +41,7 @@ public class MainActivity extends FragmentActivity {
 
 		mViewPager = (NoSlideViewPager) findViewById(R.id.content);
 		// mViewPager.setOffscreenPageLimit(mFragments.size());
-		mViewPager.setOffscreenPageLimit(3);
+		mViewPager.setOffscreenPageLimit(mFragments.size());
 		mViewPager.setAdapter(new ViewAdapter(getSupportFragmentManager()));
 		mViewPager.setScanScroll(false);
 

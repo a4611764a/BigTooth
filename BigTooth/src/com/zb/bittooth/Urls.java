@@ -21,5 +21,5 @@ public class Urls {
 	public static String url_post_userRegister = url_base
 			+ "InsertUserNameAndImageServlet";// 上传用户手机注册信息
 	public static String url_get_tagList = url_base + "TagListServlet";// 获取标签列表
-
+	public static String url_get_userInfor = url_base + "UserInfor";// 判断用户是否登录并拉去用户信息
 }

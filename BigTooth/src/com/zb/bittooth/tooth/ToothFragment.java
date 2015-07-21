@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,13 +38,16 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.analytics.MobclickAgent;
+import com.zb.bittooth.App;
 import com.zb.bittooth.R;
 import com.zb.bittooth.Urls;
 import com.zb.bittooth.customView.FlowLayout;
 import com.zb.bittooth.customView.RoundedImageView;
 import com.zb.bittooth.model.Moble;
 import com.zb.bittooth.model.Tag;
+import com.zb.bittooth.model.UserInfor;
 import com.zb.bittooth.utils.MobelUtils;
 import com.zb.bittooth.utils.T;
 
@@ -66,11 +70,16 @@ public class ToothFragment extends Fragment {
 	Button post;
 	@ViewInject(R.id.location)
 	TextView location;
+	@ViewInject(R.id.regist)
+	Button regist;
+	@ViewInject(R.id.level)
+	ImageView level;
 	private Context context;
 	private HttpUtils httpUtils = null;
 	Gson gson;
 	RequestParams params = null;
 	private List<Tag> listTag;
+	private UserInfor userInfor;
 	private static boolean isPostHead = false;
 	static String filePath = "";// 上传图片路径地址
 	private int position = -1;
@@ -94,7 +103,9 @@ public class ToothFragment extends Fragment {
 		HttpUtils.sHttpCache.setEnabled(HttpMethod.GET, false);
 		mFlowlayout = (FlowLayout) view.findViewById(R.id.flowlay);
 		listTag = new ArrayList<Tag>();
+		userInfor=new UserInfor();
 		getTags();
+		getUserInfor();
 		imageView1.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// 使用startActivityForResult启动SelectPicPopupWindow当返回到此Activity的时候就会调用onActivityResult函数
@@ -104,7 +115,6 @@ public class ToothFragment extends Fragment {
 		});
 		return view;
 	}
-
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -146,7 +156,37 @@ public class ToothFragment extends Fragment {
 					}
 				});
 	}
+	private void getUserInfor() {
+		params = new RequestParams();
+		params.addQueryStringParameter("uuid",
+				MobelUtils.getMobelUUid(context));
+		httpUtils.send(HttpRequest.HttpMethod.GET, Urls.url_get_userInfor,params,
+				new RequestCallBack<String>() {
+					@Override
+					public void onStart() {
+					}
 
+					@Override
+					public void onLoading(long total, long current,
+							boolean isUploading) {
+						if (isUploading) {
+						} else {
+						}
+					}
+
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+						userInfor = gson.fromJson(responseInfo.result,UserInfor.class);
+						initUserInfor(userInfor);
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+						Toast.makeText(context, error + msg, Toast.LENGTH_SHORT)
+								.show();
+					}
+				});
+	}
 	private void initData(List<Tag> listTag) {
 		LayoutInflater inflater = LayoutInflater.from(context);
 		for (int i = 0; i < listTag.size(); i++) {
@@ -175,7 +215,17 @@ public class ToothFragment extends Fragment {
 			mFlowlayout.addView(tv);
 		}
 	}
-
+	private void initUserInfor(UserInfor user){
+		if(user.getIsLogin().equals("1")){ //已經注册过的用户
+		ImageLoader.getInstance().displayImage(
+				user.getHead_img(), imageView1, App.options);
+		imageView1.setClickable(false);
+		name.setText(user.getName()+"");
+		name.setEnabled(false);
+		regist.setText("修改");
+		level.setVisibility(View.VISIBLE);
+		}
+	}
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (resultCode) {

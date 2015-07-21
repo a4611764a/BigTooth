@@ -116,6 +116,7 @@ public class MineFragment extends Fragment {
 		adapter = new MineAdapter(this.getFragmentManager(), mFragmentList);
 		vp_Mine.setAdapter(adapter);
 		vp_Mine.setCurrentItem(0);
+		vp_Mine.setOffscreenPageLimit(0);
 	}
 
 	@OnClick(R.id.btn_near)

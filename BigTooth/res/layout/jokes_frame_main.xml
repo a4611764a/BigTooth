@@ -60,7 +60,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
-
             <fragment
                 android:id="@+id/fra_netState"
                 android:name="com.zb.bittooth.fragement.SettingNet"

@@ -46,7 +46,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/x10"
             android:layout_width="@dimen/x50"
-            android:layout_height="@dimen/x50"
+            android:layout_height="@dimen/x40"
             android:layout_alignParentRight="true"
             android:scaleType="fitCenter"
             android:src="@drawable/mine_service" />
