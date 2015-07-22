@@ -1,10 +1,11 @@
 package com.zb.bittooth;
 
-import android.os.Environment;
 
 import com.zb.bittooth.utils.SDCardUtils;
 
 public class Urls {
+	
+	
 	// public static String
 	// url_base="http://192.168.1.103:8080/ibamboo_weixin/";// 本地
 	public static String url_base = "http://www.ibamboo.cc/ibamboo_weixin/";// 外网
@@ -22,4 +23,7 @@ public class Urls {
 			+ "InsertUserNameAndImageServlet";// 上传用户手机注册信息
 	public static String url_get_tagList = url_base + "TagListServlet";// 获取标签列表
 	public static String url_get_userInfor = url_base + "UserInfor";// 判断用户是否登录并拉去用户信息
+	
+	/************* 微信 ********************/
+	public static String WX_APP_ID="";
 }

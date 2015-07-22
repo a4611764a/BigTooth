@@ -22,16 +22,19 @@ import com.zb.bittooth.customView.CircleImageView;
 import com.zb.bittooth.customView.MyWind8ImageView;
 import com.zb.bittooth.model.Jokes;
 import com.zb.bittooth.utils.T;
+import com.zb.bittooth.utils.WeixinShare;
 
 public class JokesFragementAdapter extends BaseAdapter {
 
 	private List<Jokes> mList;
 	private Context mContext;
+	WeixinShare share;
 	private boolean canLoadImage = true;
 
 	public JokesFragementAdapter(Context context, List<Jokes> list) {
 		this.mContext = context;
 		this.mList = list;
+		 share=new WeixinShare(mContext);
 	}
 
 	@Override
@@ -62,6 +65,7 @@ public class JokesFragementAdapter extends BaseAdapter {
 			holder.content = (TextView) convertView.findViewById(R.id.content);
 			holder.tag1 = (TextView) convertView.findViewById(R.id.tag1);
 			holder.shoucangl=(MyWind8ImageView) convertView.findViewById(R.id.shoucang);
+			holder.share=(MyWind8ImageView) convertView.findViewById(R.id.share);
 			// holder.tag2 = (TextView) convertView.findViewById(R.id.tag2);
 			convertView.setTag(holder);
 		} else {
@@ -80,12 +84,18 @@ public class JokesFragementAdapter extends BaseAdapter {
 				T.showShort(mContext, "dd");
 			}
 		});
+		holder.share.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				share.wechatShare(1, "", mList.get(position).getTag(), mList.get(position).getContent(), mList.get(position).getImgHead());
+			}
+		});
 		return convertView;
 	}
 
 	static class ViewHolder {
 		public CircleImageView img_head;
 		public TextView name, content, tag1;
-		public MyWind8ImageView shoucangl;
+		public MyWind8ImageView shoucangl,share;
 	}
 }

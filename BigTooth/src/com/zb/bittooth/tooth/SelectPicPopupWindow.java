@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -23,9 +24,10 @@ import com.zb.bittooth.R;
 
 public class SelectPicPopupWindow extends Activity implements OnClickListener {
 
-	private Button btn_take_photo, btn_pick_photo, btn_cancel;
+	private Button btn_take_photo, btn_pick_photo;
 	private LinearLayout layout;
 	private Intent intent;
+	private ImageView cancel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class SelectPicPopupWindow extends Activity implements OnClickListener {
 		intent = getIntent();
 		btn_take_photo = (Button) this.findViewById(R.id.btn_take_photo);
 		btn_pick_photo = (Button) this.findViewById(R.id.btn_pick_photo);
-		btn_cancel = (Button) this.findViewById(R.id.btn_cancel);
+		cancel = (ImageView) this.findViewById(R.id.cancel);
 
 		layout = (LinearLayout) findViewById(R.id.pop_layout);
 
@@ -48,7 +50,7 @@ public class SelectPicPopupWindow extends Activity implements OnClickListener {
 			}
 		});
 		// 添加按钮监听
-		btn_cancel.setOnClickListener(this);
+		cancel.setOnClickListener(this);
 		btn_pick_photo.setOnClickListener(this);
 		btn_take_photo.setOnClickListener(this);
 	}
@@ -100,7 +102,7 @@ public class SelectPicPopupWindow extends Activity implements OnClickListener {
 
 			}
 			break;
-		case R.id.btn_cancel:
+		case R.id.cancel:
 			finish();
 			break;
 		default:
