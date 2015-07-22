@@ -134,7 +134,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x10"
-                android:layout_marginRight="@dimen/x10"
                 android:background="@color/white"
                 android:paddingLeft="@dimen/x10"
                 android:paddingBottom="@dimen/y10"
