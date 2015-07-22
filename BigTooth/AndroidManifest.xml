@@ -64,18 +64,18 @@
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan|stateHidden" >
         </activity>
-           <!-- ***********************************Jokes****************************************** -->
+        <!-- ***********************************Jokes****************************************** -->
         <activity
             android:name="com.zb.bittooth.jokes.JokesActivity_img"
             android:label="@string/app_name"
             android:theme="@style/FullBleedTheme" >
         </activity>
-          <activity
+        <activity
             android:name="com.zb.bittooth.jokes.ViewPagerActivity"
             android:label="@string/app_name"
             android:theme="@style/FullBleedTheme" >
         </activity>
-          <!-- ***********************************Mine****************************************** -->
+        <!-- ***********************************Mine****************************************** -->
         <activity
             android:name="com.zb.bittooth.mine.Service"
             android:label="@string/app_name"
@@ -208,10 +208,17 @@
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Light" />
         <activity android:name="com.mechat.mechatlibrary.ui.ZoomImageActivity" />
+
         <service
             android:name="com.mechat.mechatlibrary.MechatService"
             android:label="MechatService" >
         </service>
+      <!-- ***********************************声明微信分享所需要activity ****************************************** -->
+        <activity    
+    android:name=".wxapi.WXEntryActivity"  
+    android:exported="true"  
+    android:screenOrientation="portrait"   
+    android:theme="@android:style/Theme.Translucent.NoTitleBar" />  
     </application>
 
 </manifest>
