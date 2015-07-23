@@ -1,7 +1,4 @@
 package com.zb.bittooth.wxapi;
-
-import java.util.logging.LogManager;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,13 +30,17 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         switch (resp.errCode) {  
         case BaseResp.ErrCode.ERR_OK:  
             //分享成功  
+        	finish();
             break;  
         case BaseResp.ErrCode.ERR_USER_CANCEL:  
             //分享取消  
+        	finish();
             break;  
         case BaseResp.ErrCode.ERR_AUTH_DENIED:  
             //分享拒绝  
+        	finish();
             break;  
         }  
+        
     }  
 }  
