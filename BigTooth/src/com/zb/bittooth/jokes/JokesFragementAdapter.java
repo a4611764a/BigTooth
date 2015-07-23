@@ -7,6 +7,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,10 +15,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
+import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.zb.bittooth.App;
 import com.zb.bittooth.R;
+import com.zb.bittooth.Urls;
 import com.zb.bittooth.customView.CircleImageView;
 import com.zb.bittooth.customView.MyWind8ImageView;
 import com.zb.bittooth.model.Jokes;
@@ -30,11 +37,12 @@ public class JokesFragementAdapter extends BaseAdapter {
 	private Context mContext;
 	WeixinShare share;
 	private boolean canLoadImage = true;
-
+	private  IWXAPI wxApi;
 	public JokesFragementAdapter(Context context, List<Jokes> list) {
 		this.mContext = context;
 		this.mList = list;
-		 share=new WeixinShare(mContext);
+		wxApi = WXAPIFactory.createWXAPI(context, Urls.WX_APP_ID);  
+		wxApi.registerApp(Urls.WX_APP_ID);  
 	}
 
 	@Override
@@ -64,8 +72,10 @@ public class JokesFragementAdapter extends BaseAdapter {
 			holder.name = (TextView) convertView.findViewById(R.id.name);
 			holder.content = (TextView) convertView.findViewById(R.id.content);
 			holder.tag1 = (TextView) convertView.findViewById(R.id.tag1);
-			holder.shoucangl=(MyWind8ImageView) convertView.findViewById(R.id.shoucang);
-			holder.share=(MyWind8ImageView) convertView.findViewById(R.id.share);
+			holder.shoucangl = (MyWind8ImageView) convertView
+					.findViewById(R.id.shoucang);
+			holder.share = (MyWind8ImageView) convertView
+					.findViewById(R.id.share);
 			// holder.tag2 = (TextView) convertView.findViewById(R.id.tag2);
 			convertView.setTag(holder);
 		} else {
@@ -75,8 +85,13 @@ public class JokesFragementAdapter extends BaseAdapter {
 		holder.content.setText(mList.get(position).getContent());
 		holder.tag1.setText(mList.get(position).getTag());
 		if (canLoadImage) {
-			ImageLoader.getInstance().displayImage(
-					mList.get(position).getImgHead(), holder.img_head, App.options,App.mImageLoadingListenerImpl);
+			if (holder.img_head.getTag() == null|| !holder.img_head.getTag().toString().equals(mList.get(position).getImgHead())) {
+				ImageLoader.getInstance().displayImage(
+						mList.get(position).getImgHead(), holder.img_head,
+						App.options, App.mImageLoadingListenerImpl);
+				holder.img_head.setTag(mList.get(position).getImgHead());
+			}
+			
 		}
 		holder.shoucangl.setOnClickListener(new OnClickListener() {
 			@Override
@@ -87,7 +102,10 @@ public class JokesFragementAdapter extends BaseAdapter {
 		holder.share.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				share.wechatShare(1, "", mList.get(position).getTag(), mList.get(position).getContent(), mList.get(position).getImgHead());
+				/*wechatShare(1, "", mList.get(position).getTag(), mList
+						.get(position).getContent(), mList.get(position)
+						.getImgHead());*/
+				wechatShare(0);//分享到微信朋友圈  
 			}
 		});
 		return convertView;
@@ -96,6 +114,36 @@ public class JokesFragementAdapter extends BaseAdapter {
 	static class ViewHolder {
 		public CircleImageView img_head;
 		public TextView name, content, tag1;
-		public MyWind8ImageView shoucangl,share;
+		public MyWind8ImageView shoucangl, share;
+	}
+	/** 
+	 * 微信分享 （这里仅提供一个分享网页的示例，其它请参看官网示例代码） 
+	 * @param flag(0:分享到微信好友，1：分享到微信朋友圈) 
+	 */  
+	public  void wechatShare(int flag){
+	    WXWebpageObject webpage = new WXWebpageObject();  
+	    webpage.webpageUrl = "http://www.baidu.com";  
+	    WXMediaMessage msg = new WXMediaMessage(webpage);  
+	    msg.title = "好人";  
+	    msg.description = "好好好好好好好好好好好好好好好好好好好好好好好好好好好";
+	    Bitmap thumb = null;
+	    //这里替换一张自己工程里的图片资源
+	 //   if(image_url==null)
+	    thumb = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ic_launcher); 
+	 //   else{
+	//    thumb=getImageUrl(image_url);
+	 //   }
+	    msg.setThumbImage(thumb);  
+	    SendMessageToWX.Req req = new SendMessageToWX.Req();  
+	    req.transaction = String.valueOf(System.currentTimeMillis());  
+	    req.message = msg;  
+	    req.scene = flag==0?SendMessageToWX.Req.WXSceneSession:SendMessageToWX.Req.WXSceneTimeline;  
+	    wxApi.sendReq(req);  
+	}  
+	//根据一个url得到图片的BitMap。
+	public Bitmap getImageUrl(String image_url){
+		ImageSize targetSize = new ImageSize(80, 50); // result Bitmap will be fit to this size
+		Bitmap bmp = ImageLoader.getInstance().loadImageSync(image_url, targetSize, App.options);
+		return bmp;
 	}
 }
