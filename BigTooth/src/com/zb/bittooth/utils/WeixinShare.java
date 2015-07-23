@@ -16,9 +16,10 @@ import com.zb.bittooth.R;
 import com.zb.bittooth.Urls;
 
 public class WeixinShare {
-	private  IWXAPI wxApi;
+	
 	private   Context context;
-		public WeixinShare(Context context){
+	IWXAPI wxApi;
+		public WeixinShare(Context context, IWXAPI wxApi){
 			this.context=context;
 			//实例化  
 			wxApi = WXAPIFactory.createWXAPI(context, Urls.WX_APP_ID);  
