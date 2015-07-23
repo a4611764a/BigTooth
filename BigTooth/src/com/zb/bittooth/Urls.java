@@ -25,5 +25,5 @@ public class Urls {
 	public static String url_get_userInfor = url_base + "UserInfor";// 判断用户是否登录并拉去用户信息
 	
 	/************* 微信 ********************/
-	public static String WX_APP_ID="wx5bc8fe1c6011a686";
+	public static String WX_APP_ID="wx57c35cfd5a37fff0";
 }
