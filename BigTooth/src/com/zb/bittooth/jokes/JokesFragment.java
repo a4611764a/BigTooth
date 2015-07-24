@@ -248,6 +248,12 @@ public class JokesFragment extends Fragment implements OnLoadListener {
 				&& myevent.getIsShow().equals("0")) {
 			goto_top.setVisibility(View.GONE);
 		}
+		if(myevent.getShareResult()!=null&&myevent.getShareResult().equals("1")){
+			T.showShort(context, "分享成功");
+		}
+		else if(myevent.getShareResult()!=null&&myevent.getShareResult().equals("0")){
+			T.showShort(context, "分享失败");
+		}
 	}
 
 	public void onEventMainThread(Moble moble) {

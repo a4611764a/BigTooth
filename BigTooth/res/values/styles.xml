@@ -58,5 +58,11 @@
         <!-- 背景透明 -->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
-
+ <style name="MyDialog" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item> 
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
 </resources>

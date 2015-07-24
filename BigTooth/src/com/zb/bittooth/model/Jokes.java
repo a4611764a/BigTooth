@@ -8,6 +8,14 @@ public class Jokes {
 	private String image;
 	private String tag;
 	private String userId;
+	private String isShouCang; //1已经收藏，0为收藏
+	public String getIsShouCang() {
+		return isShouCang;
+	}
+
+	public void setIsShouCang(String isShouCang) {
+		this.isShouCang = isShouCang;
+	}
 
 	public Jokes() {
 	}

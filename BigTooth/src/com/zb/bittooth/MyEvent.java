@@ -5,6 +5,7 @@ public class MyEvent {
 	private String page;
 	private String coutent;
 	private String title;
+	private String shareResult;
 	public String getITEMS() {
 		return ITEMS;
 	}
@@ -35,6 +36,12 @@ public class MyEvent {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getShareResult() {
+		return shareResult;
+	}
+	public void setShareResult(String shareResult) {
+		this.shareResult = shareResult;
 	}
 	
 }

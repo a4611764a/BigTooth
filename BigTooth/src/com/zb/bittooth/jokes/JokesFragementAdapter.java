@@ -5,6 +5,7 @@ package com.zb.bittooth.jokes;
 
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,9 +24,11 @@ import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.zb.bittooth.App;
+import com.zb.bittooth.MainActivity;
 import com.zb.bittooth.R;
 import com.zb.bittooth.Urls;
 import com.zb.bittooth.customView.CircleImageView;
+import com.zb.bittooth.customView.CoutomDialog;
 import com.zb.bittooth.customView.MyWind8ImageView;
 import com.zb.bittooth.model.Jokes;
 import com.zb.bittooth.utils.T;
@@ -60,7 +63,7 @@ public class JokesFragementAdapter extends BaseAdapter {
 		return position;
 	}
 
-	@Override
+	@SuppressLint("NewApi") @Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		final ViewHolder holder;
 		if (convertView == null) {
@@ -84,6 +87,17 @@ public class JokesFragementAdapter extends BaseAdapter {
 		holder.name.setText(mList.get(position).getUserName());
 		holder.content.setText(mList.get(position).getContent());
 		holder.tag1.setText(mList.get(position).getTag());
+		if(mList.get(position).getIsShouCang()==null){
+			holder.shoucangl.setBackground(mContext.getResources().getDrawable(R.drawable.radar_card_around_collect_highlighted));
+		}
+		else {
+		if(mList.get(position).getIsShouCang().equals("1")){
+			holder.shoucangl.setBackground(mContext.getResources().getDrawable(R.drawable.radar_card_around_collect_lighted));
+		}
+		else{
+			holder.shoucangl.setBackground(mContext.getResources().getDrawable(R.drawable.radar_card_around_collect_highlighted));
+		}
+		}
 		if (canLoadImage) {
 			if (holder.img_head.getTag() == null|| !holder.img_head.getTag().toString().equals(mList.get(position).getImgHead())) {
 				ImageLoader.getInstance().displayImage(
@@ -94,9 +108,17 @@ public class JokesFragementAdapter extends BaseAdapter {
 			
 		}
 		holder.shoucangl.setOnClickListener(new OnClickListener() {
-			@Override
+			@SuppressLint("NewApi") @Override
 			public void onClick(View arg0) {
-				T.showShort(mContext, "dd");
+				if(mList.get(position).getIsShouCang()==null||mList.get(position).getIsShouCang().equals("0")){
+				holder.shoucangl.setBackground(mContext.getResources().getDrawable(R.drawable.radar_card_around_collect_lighted));
+				mList.get(position).setIsShouCang("1");
+				}
+				else{
+					holder.shoucangl.setBackground(mContext.getResources().getDrawable(R.drawable.radar_card_around_collect_highlighted));
+					mList.get(position).setIsShouCang("0");
+				}
+				notifyDataSetChanged();
 			}
 		});
 		holder.share.setOnClickListener(new OnClickListener() {
@@ -105,7 +127,8 @@ public class JokesFragementAdapter extends BaseAdapter {
 				/*wechatShare(1, "", mList.get(position).getTag(), mList
 						.get(position).getContent(), mList.get(position)
 						.getImgHead());*/
-				wechatShare(0);//分享到微信朋友圈  
+			//	wechatShare(1);//分享到微信朋友圈
+				showShareDialog();
 			}
 		});
 		return convertView;
@@ -122,7 +145,7 @@ public class JokesFragementAdapter extends BaseAdapter {
 	 */  
 	public  void wechatShare(int flag){
 	    WXWebpageObject webpage = new WXWebpageObject();  
-	    webpage.webpageUrl = "http://www.baidu.com";  
+	    webpage.webpageUrl = "http://www.bigTooth.com";  
 	    WXMediaMessage msg = new WXMediaMessage(webpage);  
 	    msg.title = "好人";  
 	    msg.description = "好好好好好好好好好好好好好好好好好好好好好好好好好好好";
@@ -145,5 +168,27 @@ public class JokesFragementAdapter extends BaseAdapter {
 		ImageSize targetSize = new ImageSize(80, 50); // result Bitmap will be fit to this size
 		Bitmap bmp = ImageLoader.getInstance().loadImageSync(image_url, targetSize, App.options);
 		return bmp;
+	}
+	public boolean showShareDialog(){
+		final CoutomDialog dialog=new CoutomDialog(mContext,R.style.MyDialog);
+		MyWind8ImageView friends=(MyWind8ImageView) dialog.findViewById(R.id.share_friends);
+		friends.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				wechatShare(1);
+				dialog.dismiss();
+			}
+		});
+		MyWind8ImageView share_friend_private=(MyWind8ImageView) dialog.findViewById(R.id.share_friend_private);
+		share_friend_private.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				wechatShare(0);
+				dialog.dismiss();
+			}
+		});
+		dialog.show();
+		return true;
+		
 	}
 }
