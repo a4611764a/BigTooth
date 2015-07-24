@@ -16,7 +16,7 @@ import android.view.View;
 
 public class JokesxuehuaView extends View {
 	Bitmap mFlowers = null;
-	MyFlower flowers[] = new MyFlower[25];
+	MyFlower flowers[] = new MyFlower[10];
 	private Integer[] offsetX;
 	private Integer[] offsetY;
 	Random r = new Random();
@@ -83,8 +83,36 @@ public class JokesxuehuaView extends View {
 
 	public void loadFlower() {
 		Resources r = this.getContext().getResources();
-		mFlowers = ((BitmapDrawable) r.getDrawable(R.drawable.jokes_snow))
-				.getBitmap();
+		int a= new Random().nextInt(6);
+		switch (a) {
+		case 0:
+			mFlowers = ((BitmapDrawable) r.getDrawable(R.drawable.jokes_snow))
+			.getBitmap();
+			break;
+		case 1:
+			mFlowers = ((BitmapDrawable) r.getDrawable(R.drawable.w_fuyun))
+			.getBitmap();
+			break;
+		case 2:
+			mFlowers = ((BitmapDrawable) r.getDrawable(R.drawable.w_xianhua))
+			.getBitmap();
+			break;
+		case 3:
+			mFlowers = ((BitmapDrawable) r.getDrawable(R.drawable.w_weifeng))
+			.getBitmap();
+			break;
+		case 4:
+			mFlowers = ((BitmapDrawable) r.getDrawable(R.drawable.w_taiyang))
+			.getBitmap();
+			break;
+		case 5:
+			mFlowers = ((BitmapDrawable) r.getDrawable(R.drawable.w_yueliang))
+			.getBitmap();
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 	public void recly() {
