@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -35,6 +37,20 @@ public class LoginSplash extends Activity {
 		super.onCreate(savedInstanceState);
 		AnalyticsConfig.enableEncrypt(true);// 日志加密
 		final View view = View.inflate(this, R.layout.login_splash, null);
+
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    Window window = getWindow();
+                    // Translucent status bar
+                    window.setFlags(
+                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                    // Translucent navigation bar
+                    window.setFlags(
+                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
+                        WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                }
+		
+		
 		setContentView(view);
 		PushAgent mPushAgent = PushAgent.getInstance(this);
 		mPushAgent.enable(); // 友盟推送
