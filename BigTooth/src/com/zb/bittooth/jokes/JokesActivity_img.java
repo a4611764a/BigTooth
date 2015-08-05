@@ -28,6 +28,7 @@ public class JokesActivity_img extends Activity {
 
 	@OnClick(R.id.top1)
 	public void goTop(View v) {
+		T.showShort(this, "ddd");
 		Intent intent=new Intent();
 		intent.setClass(this,ViewPagerActivity.class );
 		startActivity(intent);
