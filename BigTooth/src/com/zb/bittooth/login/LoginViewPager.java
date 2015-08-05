@@ -54,6 +54,11 @@ public class LoginViewPager extends Activity implements OnPageChangeListener,
 	private HttpUtils httpUtils = null;
 	RequestParams params = null;
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
