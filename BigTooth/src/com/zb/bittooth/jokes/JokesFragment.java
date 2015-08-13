@@ -61,6 +61,7 @@ import de.greenrobot.event.EventBus;
 public class JokesFragment extends Fragment implements OnLoadListener {
 	NetReceiver mReceiver = new NetReceiver();
 	IntentFilter mFilter = new IntentFilter();
+	//
 	Gson gson = new Gson();
 	private HttpUtils httpUtils = null;
 	RequestParams params = null;
