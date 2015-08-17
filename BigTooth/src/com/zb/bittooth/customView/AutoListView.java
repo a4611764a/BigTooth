@@ -21,7 +21,7 @@ import com.zb.bittooth.utils.ScreenUtils;
 import de.greenrobot.event.EventBus;
 
 public class AutoListView extends ListView implements OnScrollListener {
-//dfasdfasdfceshidfasdfadsfceshi12
+//dfasdfasdfceshidfasdfadsfceshi12dfadsfadsfasd
 	// 区分当前操作是刷新还是加载
 	public static final int REFRESH = 0;
 	public static final int LOAD = 1;
