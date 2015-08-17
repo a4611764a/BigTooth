@@ -23,7 +23,7 @@ import com.zb.bittooth.R;
  * @ClassName: CircleImageView
  * @说明: 实现bitmap图片圆形化
  * @author ShiYawei
- * @date 2015-01-05 下午4:47:31
+ * @date 2015-01-05 下午4:47:31dfasd 
  */
 public class CircleImageView extends ImageView {
 
