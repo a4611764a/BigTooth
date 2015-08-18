@@ -15,7 +15,7 @@ import com.zb.bittooth.customView.CustomProgressDialog;
 import com.zb.bittooth.utils.T;
 
 public class JokesActivity_img extends Activity {
-	//zzz
+	//
 	Gson gson = new Gson();
 	private HttpUtils httpUtils = null;
 	CustomProgressDialog dialog;
