@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 public class Service extends Activity {
+	//ceshi
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
