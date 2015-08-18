@@ -28,6 +28,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 public class App extends Application {
+	//33
 	public static App app;
 	public static Typeface TEXT_TYPE;
 	public static DisplayImageOptions options;
