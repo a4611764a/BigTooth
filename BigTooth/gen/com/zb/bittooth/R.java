@@ -1306,7 +1306,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int umeng_update_dialog_bg=0x7f0200c5;
         public static final int umeng_update_title_bg=0x7f0200c6;
         public static final int umeng_update_wifi_disable=0x7f0200c7;
-        public static final int wallpaper=0x7f0200c8;
+        public static final int w_fuyun=0x7f0200c8;
+        public static final int w_taiyang=0x7f0200c9;
+        public static final int w_weifeng=0x7f0200ca;
+        public static final int w_xianhua=0x7f0200cb;
+        public static final int w_yueliang=0x7f0200cc;
+        public static final int wallpaper=0x7f0200cd;
     }
     public static final class id {
         public static final int action_settings=0x7f060096;
