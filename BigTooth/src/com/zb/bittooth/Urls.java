@@ -4,7 +4,7 @@ package com.zb.bittooth;
 import com.zb.bittooth.utils.SDCardUtils;
 
 public class Urls {
-	// 999
+	// 000
 	// public static String
 	// url_base="http://192.168.1.103:8080/ibamboo_weixin/";// 本地
 	public static String url_base = "http://www.ibamboo.cc/ibamboo_weixin/";// 外网
